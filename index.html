@@ -3,43 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>文档</title>
+  <title>证件信息查询</title>
   <style>
-    body { margin: 0; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.6; color: #24292e; background: #fff; padding: 16px; }
-    h1, h2, h3 { margin: 1.5em 0 0.5em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
-    h1 { font-size: 1.8em; } h2 { font-size: 1.5em; } h3 { font-size: 1.25em; }
-    p, ul, ol { margin: 0.8em 0; }
-    a { color: #0366d6; text-decoration: none; }
-    code { background: #f6f8fa; padding: 2px 5px; border-radius: 4px; font-size: 0.9em; }
-    pre { background: #f6f8fa; padding: 12px; overflow-x: auto; border-radius: 6px; margin: 1em 0; }
-    pre code { background: none; padding: 0; }
-    blockquote { border-left: 4px solid #dfe2e5; padding: 0 1em; color: #6a737d; margin: 1em 0; }
-    img { max-width: 100%; height: auto; border-radius: 4px; }
-    table { width: 100%; border-collapse: collapse; margin: 1em 0; }
-    th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
-    th { background: #f8f9fa; }
+    /* 核心样式：确保专业、稳重 */
+    body { margin: 0; font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; color: #333; background: #f0f2f5; padding: 15px; }
+    .card { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: 20px auto; }
+    
+    /* 证件信息表格美化 */
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #eee; }
+    th, td { border-bottom: 1px solid #f0f0f0; padding: 15px 10px; text-align: left; }
+    th { background: #fafafa; width: 35%; color: #666; font-size: 14px; font-weight: normal; }
+    td { font-weight: 600; color: #111; font-size: 14px; }
+    
+    .title { text-align: center; color: #1a73e8; margin-bottom: 20px; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; font-size: 1.25em; font-weight: bold; }
+    
+    /* 移动端适配 */
+    @media (max-width: 480px) {
+      .card { padding: 15px; margin-top: 10px; }
+      td, th { padding: 12px 8px; font-size: 13px; }
+    }
   </style>
 </head>
 <body>
-  <article id="md"></article>
-  <!-- 解析器（国内可访问的 CDN） -->
-  <script src="https://cdn.bootcdn.net/ajax/libs/marked/12.0.1/marked.min.js"></script>
+  <div class="card">
+    <div class="title">作业操作证信息</div>
+    <table id="info-table">
+      </table>
+  </div>
+
   <script>
-    // ⬇️ 你的 Markdown 内容（支持所有标准语法）
-    const markdown = `
-| 项目 | 内容 |
-| :--- | :--- |
-| **姓名** | 张予东 |
-| **性别** | 男 |
-| **证号** | T370206197311154811 |
-| **作业类别** | 高处作业 |
-| **操作项目** | 高处安装、维护、拆除作业 |
-| **签发机关** | 河北省应急管理厅 |
-| **初领日期** | 2024-10-09 |
-| **应复审日期** | 2027-10-08 |
-| **有效期限** | 2024-10-09 至 2030-10-08 |
-    `;
-    document.getElementById('md').innerHTML = marked.parse(markdown);
+    // 你的数据内容（纯 JSON 格式，不依赖 Markdown 库）
+    const data = [
+      { key: "姓名", value: "张予东" },
+      { key: "性别", value: "男" },
+      { key: "证号", value: "T370206197311154811" },
+      { key: "作业类别", value: "高处作业" },
+      { key: "操作项目", value: "高处安装、维护、拆除作业" },
+      { key: "签发机关", value: "河北省应急管理厅" },
+      { key: "初领日期", value: "2024-10-09" },
+      { key: "应复审日期", value: "2027-10-08" },
+      { key: "有效期限", value: "2024-10-09 至 2030-10-08" }
+    ];
+
+    const table = document.getElementById('info-table');
+    
+    // 循环生成表格行，纯原生 JS，不依赖任何库
+    let htmlContent = "";
+    data.forEach(item => {
+      htmlContent += `
+        <tr>
+          <th>${item.key}</th>
+          <td>${item.value}</td>
+        </tr>
+      `;
+    });
+    
+    table.innerHTML = htmlContent;
   </script>
 </body>
 </html>
