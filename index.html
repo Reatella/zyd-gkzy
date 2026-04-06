@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文档</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.6; color: #24292e; background: #fff; padding: 16px; }
+    h1, h2, h3 { margin: 1.5em 0 0.5em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
+    h1 { font-size: 1.8em; } h2 { font-size: 1.5em; } h3 { font-size: 1.25em; }
+    p, ul, ol { margin: 0.8em 0; }
+    a { color: #0366d6; text-decoration: none; }
+    code { background: #f6f8fa; padding: 2px 5px; border-radius: 4px; font-size: 0.9em; }
+    pre { background: #f6f8fa; padding: 12px; overflow-x: auto; border-radius: 6px; margin: 1em 0; }
+    pre code { background: none; padding: 0; }
+    blockquote { border-left: 4px solid #dfe2e5; padding: 0 1em; color: #6a737d; margin: 1em 0; }
+    img { max-width: 100%; height: auto; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 1em 0; }
+    th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+    th { background: #f8f9fa; }
+  </style>
+</head>
+<body>
+  <article id="md"></article>
+  <!-- 解析器（国内可访问的 CDN） -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/marked/12.0.1/marked.min.js"></script>
+  <script>
+    // ⬇️ 你的 Markdown 内容（支持所有标准语法）
+    const markdown = `
+| 项目 | 内容 |
+| :--- | :--- |
+| **姓名** | 张予东 |
+| **性别** | 男 |
+| **证号** | T370206197311154811 |
+| **作业类别** | 高处作业 |
+| **操作项目** | 高处安装、维护、拆除作业 |
+| **签发机关** | 河北省应急管理厅 |
+| **初领日期** | 2024-10-09 |
+| **应复审日期** | 2027-10-08 |
+| **有效期限** | 2024-10-09 至 2030-10-08 |
+    `;
+    document.getElementById('md').innerHTML = marked.parse(markdown);
+  </script>
+</body>
+</html>
